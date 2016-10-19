@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 
 public class flappyinput : MonoBehaviour {
 	
 	public float jumpforce = 100f;
-	// Use this for initialization
+	public Text count;
+	// Use this for initializatio
 	void Start () {
-	
+		count.text = "Points:" + 0.ToString ();
+
 	}
 	
 	// Update is called once per frame
@@ -17,8 +20,12 @@ public class flappyinput : MonoBehaviour {
 
 
 	}
+
+
+
+
 	void detectInput(){
-		if (Input.GetKeyDown ("b")) {
+		if (Input.GetKeyDown ("space")) {
 			Debug.Log ("ButtonPressed");
 			Jump ();
 		}
@@ -26,6 +33,7 @@ public class flappyinput : MonoBehaviour {
 			Time.timeScale = 1;
 			Application.LoadLevel (Application.loadedLevel);
 		}
+
 	}
 
 	void Jump(){
@@ -33,10 +41,13 @@ public class flappyinput : MonoBehaviour {
 		gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0f,jumpforce,0f));
 			
 			}
+
 	void Dead(){
 		Time.timeScale = 0;
+		count.text = "Dead. [R]etry?";
 
 	}
+
 
 	void OnCollisionEnter(){
 		Debug.Log ("wat");
